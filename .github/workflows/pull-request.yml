@@ -186,7 +186,7 @@ jobs:
 
       - name: Start the development server 
         run: |
-          npm run dev &
+          npm run dev && sleep 10 &&
           echo "Development server started..."
 
       # Sleep for 10 s
