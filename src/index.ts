@@ -37,7 +37,7 @@ schema = roleDirectiveTransformer(schema, "role");
 // Our httpServer handles incoming requests to our Express app.
 // Below, we tell Apollo Server to "drain" this httpServer, enabling our servers to shut down gracefully.
 
-const httpServer =
+export const httpServer =
   process.env.NODE_ENV === "production"
     ? https.createServer(
         {
@@ -50,7 +50,7 @@ const httpServer =
       )
     : http.createServer(app);
 
-const server = new ApolloServer({
+export const server = new ApolloServer({
   schema,
   formatError: (
     error: any
@@ -102,9 +102,9 @@ const serverCleanup = useServer(
   wsServer
 );
 
-async function startServer(): Promise<void> {
+export async function startServer(): Promise<void> {
   await database.connect();
-
+  console.log("here in index file");
   await server.start();
 
   app.use(
